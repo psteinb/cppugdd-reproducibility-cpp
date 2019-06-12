@@ -5,11 +5,8 @@ image:
 platform:
   - x64
 
-build:
-  #project: code/cpp/std_normal_distribution
-  verbosity: minimal
-  parallel: true
-
+build: off
+  
 matrix:
   fast_finish: false
 
@@ -18,15 +15,11 @@ configuration:
   - Release
 
 build_script:
-  - sh: pwd
   - cmake --version
   - cmake -H. -Bbuild -A%PLATFORM% ..
   - cmake --build build --config %CONFIGURATION%
 
 test_script:
-  - sh: pwd
-  - mkdir build
-  - cd build
   - cmake -H. -Bbuild -A%PLATFORM% ..
   - cmake --build build --config %CONFIGURATION%
   - ctest
