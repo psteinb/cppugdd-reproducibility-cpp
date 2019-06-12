@@ -17,15 +17,15 @@ common_sources: &all_sources
 matrix:
   include:
     # OSX Clang Builds
-    # - os: osx
-    #   osx_image: xcode7.3
-    #   compiler: clang
-    #   env: COMPILER='clang++'
+    - os: osx
+      osx_image: xcode9
+      compiler: gcc
+      env: COMPILER='g++'
 
-    # - os: osx
-    #   osx_image: xcode8
-    #   compiler: clang
-    #   env: COMPILER='clang++'
+    - os: osx
+      osx_image: xcode9.1
+      compiler: gcc
+      env: COMPILER='g++'
 
     - os: osx
       osx_image: xcode9
@@ -115,7 +115,7 @@ before_script:
   - pwd && ls
   #in case is needed
   #- cmake -Hcode/cpp/std_normal_distribution/ -BBuild-Debug -DCMAKE_BUILD_TYPE=Debug 
-  - cmake -Hcode/cpp/std_normal_distribution/ -BBuild-Release -DCMAKE_BUILD_TYPE=Release
+  - cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Release
 
 
 script:
@@ -130,6 +130,6 @@ script:
   #     bash <(curl -s https://codecov.io/bash) -X gcov || echo "Codecov did not collect coverage reports"
   #   fi
   - # Go to release build
-  - cd Build-Release
+  - cd build
   - VERBOSE=1 cmake --build . --config Release
   - CTEST_OUTPUT_ON_FAILURE=1 ctest 
