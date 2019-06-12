@@ -4,7 +4,7 @@ project(test_std_normal LANGUAGES CXX VERSION 0.0.1 )
 
 
 # Prepare "Catch" library for other executables
-set(CATCH_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/extern/catch2)
+set(CATCH_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/extern)
 add_library(Catch2::Catch IMPORTED INTERFACE)
 set_property(TARGET Catch2::Catch APPEND PROPERTY INTERFACE_INCLUDE_DIRECTORIES "${CATCH_INCLUDE_DIR}")
 
