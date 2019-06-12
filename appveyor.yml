@@ -1,0 +1,36 @@
+image:
+  - Visual Studio 2017
+  - Visual Studio 2015
+
+platform:
+  - x64
+
+build:
+  project: code/cpp/std_normal_distribution
+  verbosity: minimal
+  parallel: true
+
+matrix:
+  fast_finish: false
+
+configuration:
+  - Debug
+  - Release
+
+build_script:
+  - sh: pwd
+  - cd code/cpp/std_normal_distribution
+  - mkdir build
+  - cd build
+  - cmake --version
+  - cmake -A%PLATFORM% ..
+  - cmake --build . --config %CONFIGURATION%
+
+test_script:
+  - sh: pwd
+  - cd code/cpp/std_normal_distribution
+  - mkdir build
+  - cd build
+  - cmake -A%PLATFORM% ..
+  - cmake --build . --config %CONFIGURATION%
+  - ctest
