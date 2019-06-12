@@ -22,4 +22,5 @@ build_script:
 test_script:
   - cmake -H. -Bbuild -A%PLATFORM% ..
   - cmake --build build --config %CONFIGURATION%
+  - cd build
   - ctest
