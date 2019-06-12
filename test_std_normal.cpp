@@ -1,15 +1,13 @@
 #define CATCH_CONFIG_MAIN
-#include "catch.hpp"
+#include "catch2/catch.hpp"
 #include <random>
 
-TEST_CASE( "random numbers diced", "[rng]" ) {
+TEST_CASE( "random numbers diced" ) {
 
     //taken from https://en.cppreference.com/w/cpp/numeric/random/normal_distribution
     //std::random_device rd{};
     std::mt19937 gen{42};
 
-    // values near the mean are the most likely
-    // standard deviation affects the dispersion of generated values from the mean
     std::normal_distribution<> d{5,2};
 
     CHECK( d(gen) == Approx(3.8995310112) );
@@ -23,6 +21,5 @@ TEST_CASE( "random numbers diced", "[rng]" ) {
     CHECK( d(gen) == Approx(4.0143930558) );
     CHECK( d(gen) == Approx(5.7851594828) );
     CHECK( d(gen) == Approx(3.1416306964) );
-
-
+	
 }
